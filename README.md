@@ -2,7 +2,7 @@
 
 Интерактивная палитра и конвертер цветов, разработанный для демонстрации современной архитектуры фронтенд-приложений.
 
-![React](https://img.shields.io/badge/React-18-blue?style=flat-square&logo=react)
+![React](https://img.shields.io/badge/React-19-blue?style=flat-square&logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat-square&logo=typescript)
 ![FSD](https://img.shields.io/badge/Architecture-Feature_Sliced_Design-green?style=flat-square)
 ![Vite](https://img.shields.io/badge/Build-Vite-purple?style=flat-square&logo=vite)
