@@ -64,4 +64,4 @@
 - [ ] Dark Mode
 
 ---
-**Author:** [Kirill](https://github.com/YOUR_USERNAME)
+**Author:** [Kirill](https://github.com/lirik-le)
