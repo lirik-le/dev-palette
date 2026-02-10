@@ -1,73 +1,44 @@
-# React + TypeScript + Vite
+# DevPalette 🎨
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Интерактивная палитра и конвертер цветов, разработанный для демонстрации современной архитектуры фронтенд-приложений.
 
-Currently, two official plugins are available:
+![React](https://img.shields.io/badge/React-18-blue?style=flat-square&logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat-square&logo=typescript)
+![FSD](https://img.shields.io/badge/Architecture-Feature_Sliced_Design-green?style=flat-square)
+![Vite](https://img.shields.io/badge/Build-Vite-purple?style=flat-square&logo=vite)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 💡 О проекте
 
-## React Compiler
+**DevPalette** — это инструмент для разработчиков и дизайнеров, позволяющий работать с цветовыми моделями RGB, HEX и HSL.
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+Главная цель проекта — продемонстрировать подход к разработке масштабируемых SPA-приложений с использованием методологии **Feature-Sliced Design (FSD)** и сложной бизнес-логикой на клиенте без использования тяжелых сторонних библиотек.
 
-## Expanding the ESLint configuration
+## ✨ Ключевые особенности
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 🛠 Технические решения
+* **Feature-Sliced Design (FSD):** Строгая архитектурная методология. Проект разбит на слои (`app`, `widgets`, `features`, `entities`, `shared`), что обеспечивает слабую связность (Low Coupling) и высокую переиспользуемость кода.
+* **Zero-Dependency Math:** Все алгоритмы конвертации цветов (`RGB ↔ HSL ↔ HEX`) реализованы с нуля. Это позволило избежать лишнего веса бандла и показать понимание алгоритмов.
+* **Performance First:** Оптимизация ререндеров React. Использование `useMemo` для деривации данных и разделение состояния для минимизации обновлений DOM.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 🧩 Функциональность
+* **Двустороннее связывание:** Изменение слайдеров обновляет HEX-код, а ввод в инпут — двигает слайдеры.
+* **Smart Validation:** Автоматическая обработка сокращенных форматов (например, ввод `#f00` автоматически превращается в `#ff0000`).
+* **Reactive UI:** Мгновенный отклик интерфейса благодаря оптимизированному стейт-менеджменту.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🏗 Стек технологий
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+* **Core:** React, TypeScript, Vite
+* **Styling:** Tailwind CSS, clsx, cva
+* **Icons:** Lucide React
+* **Code Quality:** ESLint, Prettier
+* **Architecture:** Feature-Sliced Design (FSD)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 📂 Структура проекта (FSD)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+```text
+src/
+├── app/          # Инициализация приложения, провайдеры, глобальные стили
+├── widgets/      # Крупные самостоятельные блоки (ColorMixer)
+├── features/     # Пользовательские сценарии (в разработке)
+├── entities/     # Бизнес-сущности (Color model, конвертеры)
+└── shared/       # UI Kit (Slider, Input) и вспомогательные функции
